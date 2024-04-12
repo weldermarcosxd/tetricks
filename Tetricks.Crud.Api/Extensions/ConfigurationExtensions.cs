@@ -2,8 +2,8 @@
 
 public static class ConfigurationExtensions
 {
-    private const string ChaveUrlBaseDoKeycloak = "Keycloak:auth-server-url";
-    private const string ChaveRealm = "Keycloak:realm";
+    private const string ChaveUrlBaseDoKeycloak = "Keycloak:Issuer";
+    private const string ChaveRealm = "Keycloak:Realm";
 
     public static string? ObterUrlBaseDoKeycloak(this IConfiguration configuration) =>
         configuration.GetValue(ChaveUrlBaseDoKeycloak, string.Empty);
