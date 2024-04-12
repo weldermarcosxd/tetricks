@@ -17,8 +17,7 @@ public class Program
 
         var app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
-            app.UsarSwagger();
+        app.UsarSwagger();
 
         app.UseHttpsRedirection();
         app.UseAuthentication();
