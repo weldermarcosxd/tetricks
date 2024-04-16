@@ -1,8 +1,8 @@
-﻿using Tetricks.Crud.Entities.Abstractions.Tenants;
+﻿using Tetricks.Crud.Entities.Abstractions;
 
 namespace Tetricks.Crud.Entities;
 
-public class Usuario : IEntidadeDeTenant
+public class Usuario : IUsuario
 {
     public required Guid Id { get; set; }
     public required long TenantId { get; set; }

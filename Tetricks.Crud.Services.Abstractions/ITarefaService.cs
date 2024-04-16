@@ -5,5 +5,8 @@ namespace Tetricks.Crud.Services.Abstractions;
 
 public interface ITarefaService
 {
-    Task<IResultadoPaginado<ITarefa>> ObterTodasAsTarefasAsync(IFiltroDePesquisa filtroDePesquisa, CancellationToken cancellationToken);
+    Task<IResultadoPaginado<ITarefa>> ObterTodasAsTarefasAsync(
+        IFiltroDePesquisa filtroDePesquisa,
+        CancellationToken cancellationToken
+    );
 }

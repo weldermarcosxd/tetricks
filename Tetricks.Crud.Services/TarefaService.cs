@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Tetricks.Crud.Entities;
 using Tetricks.Crud.Entities.Abstractions;
 using Tetricks.Crud.Entities.Abstractions.DTOs;
 using Tetricks.Crud.Repositories.Abstractions;
