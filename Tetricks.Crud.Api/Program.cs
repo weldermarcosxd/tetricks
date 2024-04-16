@@ -1,4 +1,6 @@
 using Tetricks.Crud.Api.Extensions;
+using Tetricks.Crud.Repositories.Extensions;
+using Tetricks.Crud.Services.Extensions;
 
 namespace Tetricks.Crud.Api;
 
@@ -14,6 +16,8 @@ public class Program
         services.AddEndpointsApiExplorer();
         services.AdicionarAutenticacaoEAutorizacao(configuration);
         services.AdicionarSwaggerComAutenticacao(configuration);
+        services.AdicionarRepositorios();
+        services.AdicionarServicos();
 
         var app = builder.Build();
 

@@ -13,6 +13,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tetricks.Crud.Entities\Tetricks.Crud.Entities.csproj" />
+    <ProjectReference Include="..\Tetricks.Crud.Services.Abstractions\Tetricks.Crud.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\Tetricks.Crud.Repositories\Tetricks.Crud.Repositories.csproj" />
+    <ProjectReference Include="..\Tetricks.Crud.Services\Tetricks.Crud.Services.csproj" />
   </ItemGroup>
 
 </Project>

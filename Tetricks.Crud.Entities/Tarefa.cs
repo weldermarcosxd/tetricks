@@ -1,9 +1,8 @@
-﻿using Tetricks.Crud.Entities.Abstractions.Repositorios;
-using Tetricks.Crud.Entities.Abstractions.Tenants;
+﻿using Tetricks.Crud.Entities.Abstractions;
 
 namespace Tetricks.Crud.Entities;
 
-public class Tarefa : IEntidadeDeTenant, IEntidadeDeCrud
+public class Tarefa : ITarefa
 {
     public Guid Id { get; set; }
     public DateTime CriadoEm { get; set; }

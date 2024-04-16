@@ -9,6 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetricks.Crud.Entities", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetricks.Crud.Entities.Abstractions", "Tetricks.Crud.Entities.Abstractions\Tetricks.Crud.Entities.Abstractions.csproj", "{7671C74A-D720-4DDB-87FC-E0BB5FCDF202}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetricks.Crud.Repositories", "Tetricks.Crud.Repositories\Tetricks.Crud.Repositories.csproj", "{4DF85E73-D82E-4F13-90DC-5EF057F5463C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetricks.Crud.Services", "Tetricks.Crud.Services\Tetricks.Crud.Services.csproj", "{FFD7E5CD-B362-4FE3-9279-F7DB01D6938E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetricks.Crud.Services.Abstractions", "Tetricks.Crud.Services.Abstractions\Tetricks.Crud.Services.Abstractions.csproj", "{94FC8E95-A597-429E-8436-0A62D42E7598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetricks.Crud.Repositories.Abstractions", "Tetricks.Crud.Repositories.Abstractions\Tetricks.Crud.Repositories.Abstractions.csproj", "{F607AAC9-3A52-4DC1-9FE4-CB14F077725C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +35,22 @@ Global
 		{7671C74A-D720-4DDB-87FC-E0BB5FCDF202}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7671C74A-D720-4DDB-87FC-E0BB5FCDF202}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7671C74A-D720-4DDB-87FC-E0BB5FCDF202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF85E73-D82E-4F13-90DC-5EF057F5463C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF85E73-D82E-4F13-90DC-5EF057F5463C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF85E73-D82E-4F13-90DC-5EF057F5463C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF85E73-D82E-4F13-90DC-5EF057F5463C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD7E5CD-B362-4FE3-9279-F7DB01D6938E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD7E5CD-B362-4FE3-9279-F7DB01D6938E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD7E5CD-B362-4FE3-9279-F7DB01D6938E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD7E5CD-B362-4FE3-9279-F7DB01D6938E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FC8E95-A597-429E-8436-0A62D42E7598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FC8E95-A597-429E-8436-0A62D42E7598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FC8E95-A597-429E-8436-0A62D42E7598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FC8E95-A597-429E-8436-0A62D42E7598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F607AAC9-3A52-4DC1-9FE4-CB14F077725C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F607AAC9-3A52-4DC1-9FE4-CB14F077725C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F607AAC9-3A52-4DC1-9FE4-CB14F077725C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F607AAC9-3A52-4DC1-9FE4-CB14F077725C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
