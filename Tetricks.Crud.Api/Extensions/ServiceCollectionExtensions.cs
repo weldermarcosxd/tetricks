@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -9,65 +9,66 @@ public static class ServiceCollectionExtensions
 {
     public static void AdicionarAutenticacaoEAutorizacao(this IServiceCollection services, IConfiguration configuration)
     {
-        var urlBaseDoKeycloak = configuration.ObterUrlBaseDoKeycloak();
+        var authority = configuration.ObterUrlAutorityDoKeycloak();
+        var clientSecret = configuration.ObterClientSecretDoKeycloak();
+        var audiencia = configuration.ObterAudienciaDoKeycloak();
         var realm = configuration.ObterRealm();
+
         services
             .AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer(options =>
             {
-                x.RequireHttpsMetadata = false;
-                x.MetadataAddress = $"{urlBaseDoKeycloak}/realms/{realm}/.well-known/openid-configuration";
-                x.TokenValidationParameters = new TokenValidationParameters
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
+                options.Audience = audiencia;
+                options.Authority = authority;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    RoleClaimType = "groups",
-                    NameClaimType = "preferred_username",
-                    ValidAudience = "account",
-                    ValidateIssuer = true
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+
+                    ValidIssuer = authority,
+                    ValidAudience = audiencia,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = string.IsNullOrEmpty(clientSecret)
+                        ? null
+                        : new SymmetricSecurityKey(Encoding.UTF8.GetBytes(clientSecret))
                 };
             });
 
-        services.AddAuthorization(o =>
-        {
-            o.DefaultPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-        });
+        services.AddAuthorization();
     }
 
     public static void AdicionarSwaggerComAutenticacao(this IServiceCollection services, IConfiguration configuration)
     {
-        var urlBaseDoKeycloak = configuration.ObterUrlBaseDoKeycloak();
+        var authority = configuration.ObterUrlAutorityDoKeycloak();
         var realm = configuration.ObterRealm();
         services.AddSwaggerGen(options =>
         {
-            var securityScheme = new OpenApiSecurityScheme
-            {
-                Name = "JWT Authentication",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = "bearer",
-                Reference = new OpenApiReference
-                {
-                    Id = JwtBearerDefaults.AuthenticationScheme,
-                    Type = ReferenceType.SecurityScheme
-                }
-            };
-
             options.AddSecurityDefinition(
-                "Bearer",
+                "OAuth2",
                 new OpenApiSecurityScheme
                 {
+                    BearerFormat = "JWT",
                     Type = SecuritySchemeType.OAuth2,
+                    In = ParameterLocation.Header,
+                    Scheme = "Bearer",
                     Flows = new OpenApiOAuthFlows
                     {
-                        Implicit = new OpenApiOAuthFlow
+                        AuthorizationCode = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri(
-                                $"{urlBaseDoKeycloak}/realms/{realm}/protocol/openid-connect/auth"
-                            )
+                            AuthorizationUrl = new Uri($"{authority}/protocol/openid-connect/auth"),
+                            TokenUrl = new Uri($"{authority}/protocol/openid-connect/token"),
+                            Scopes = new Dictionary<string, string> { { "profile", "Profile scope description" } },
                         }
-                    }
+                    },
+                    Description = "Balea Server OpenId Security Scheme"
                 }
             );
 
@@ -77,9 +78,9 @@ public static class ServiceCollectionExtensions
                     {
                         new OpenApiSecurityScheme
                         {
-                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "OAuth2" }
                         },
-                        new List<string>()
+                        Array.Empty<string>()
                     }
                 }
             );
