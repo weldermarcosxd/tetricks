@@ -20,7 +20,7 @@ public class TarefaController(ILogger<TarefaController> logger, ITarefaService t
         CancellationToken cancellationToken
     )
     {
-        _logger.LogInformation($"Acessando método {nameof(Get)} de obtenção de {nameof(TarefaController)}");
+        _logger.LogInformation("Acessando método Get de obtenção de TarefaController");
         var resultadoPaginado = await _tarefaService.ObterTodasAsTarefasAsync(filtroDePesquisa, cancellationToken);
         return Ok(resultadoPaginado);
     }
