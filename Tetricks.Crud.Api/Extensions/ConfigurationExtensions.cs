@@ -11,9 +11,6 @@ public static class ConfigurationExtensions
     public static string ObterUrlAutorityDoKeycloak(this IConfiguration configuration) =>
         ObterVariavelObrigatoria(configuration, ChaveUrlAuthorityDoKeycloak);
 
-    public static string? ObterRealm(this IConfiguration configuration) =>
-        ObterVariavelObrigatoria(configuration, ChaveRealm);
-
     public static string? ObterClientSecretDoKeycloak(this IConfiguration configuration) =>
         ObterVariavelObrigatoria(configuration, ClientSecretDoKeycloak);
 

@@ -12,7 +12,6 @@ public static class ServiceCollectionExtensions
         var authority = configuration.ObterUrlAutorityDoKeycloak();
         var clientSecret = configuration.ObterClientSecretDoKeycloak();
         var audiencia = configuration.ObterAudienciaDoKeycloak();
-        var realm = configuration.ObterRealm();
 
         services
             .AddAuthentication(options =>
@@ -48,7 +47,6 @@ public static class ServiceCollectionExtensions
     public static void AdicionarSwaggerComAutenticacao(this IServiceCollection services, IConfiguration configuration)
     {
         var authority = configuration.ObterUrlAutorityDoKeycloak();
-        var realm = configuration.ObterRealm();
         services.AddSwaggerGen(options =>
         {
             options.AddSecurityDefinition(
