@@ -4,7 +4,7 @@ using Tetricks.Crud.Services.Extensions;
 
 namespace Tetricks.Crud.Api;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {

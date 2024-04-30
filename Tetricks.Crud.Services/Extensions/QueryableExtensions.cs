@@ -17,6 +17,9 @@ public static class QueryableExtensions
         where TModel : class, IEntidadeDeCrud
     {
         cancellationToken.ThrowIfCancellationRequested();
+
+        await Task.Delay(100, cancellationToken);
+
         var nomeDaentidadeListada = queryable.First().GetType().Name;
 
         var dominioBase = configuration.ObterDominioBase();
