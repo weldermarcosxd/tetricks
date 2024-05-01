@@ -8,5 +8,6 @@ public static class ServiceCollectionExtensions
     public static void AdicionarServicos(this IServiceCollection services)
     {
         services.AddScoped<ITarefaService, TarefaService>();
+        services.AddScoped<IProdutoService, ProdutoService>();
     }
 }

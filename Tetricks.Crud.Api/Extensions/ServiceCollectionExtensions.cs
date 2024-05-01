@@ -22,7 +22,6 @@ public static class ServiceCollectionExtensions
             })
             .AddJwtBearer(options =>
             {
-                options.SaveToken = true;
                 options.RequireHttpsMetadata = true;
                 options.Audience = audiencia;
                 options.Authority = authority;
