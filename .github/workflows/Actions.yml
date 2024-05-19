@@ -58,6 +58,6 @@ jobs:
 
     - name: Build e Push no Azure Container Registry
       run: |
-        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest
-        docker tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:$(date +%s)
-        docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}
+        docker build . --file Dockerfile --tag weldermarcosxd/tetricks-crud-api:latest
+        docker tag weldermarcosxd/tetricks-crud-api:latest weldermarcosxd/$tetricks-crud-api:$(date +%s)
+        docker push weldermarcosxd/tetricks-crud-api
