@@ -55,8 +55,8 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build e Push no Azure Container Registry
-      run: |
-        docker build . --file Dockerfile --tag weldermarcosxd/tetricks-crud-api:latest
-        docker tag weldermarcosxd/tetricks-crud-api:latest weldermarcosxd/$tetricks-crud-api:$(date +%s)
-        docker push weldermarcosxd/tetricks-crud-api
+    - name: Build and push Docker images
+    - uses: docker/build-push-action@v5.3.0
+      with:
+        push: true
+        tags: weldermarcosxd/tetricks-crud-api:latest
