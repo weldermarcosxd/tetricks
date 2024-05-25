@@ -44,7 +44,6 @@ jobs:
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
   publish:
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -83,5 +82,4 @@ jobs:
           registryPassword: ${{ secrets.DOCKER_PASSWORD }}
           containerAppName: tetricks-crud-api
           resourceGroup: Tetricks
-          dockerfilePath: ./Dockerfile
           imageToBuild: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
