@@ -46,7 +46,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Docker Login
       uses: docker/login-action@v3.1.0
       with:
@@ -67,17 +67,17 @@ jobs:
 
     steps:
       - name: Checkout to the branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Azure Login
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.TETRICKSCRUDAPI_AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.TETRICKSCRUDAPI_AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.TETRICKSCRUDAPI_AZURE_SUBSCRIPTION_ID }}
 
       - name: Build and push container image to registry
-        uses: azure/container-apps-deploy-action@v2
+        uses: azure/container-apps-deploy-action@v3
         with:
           appSourcePath: ${{ github.workspace }} 
           registryUrl: docker.io
