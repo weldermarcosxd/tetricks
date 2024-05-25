@@ -41,7 +41,5 @@ jobs:
           containerAppName: tetricks-crud-api
           resourceGroup: Tetricks
           imageToBuild: weldermarcosxd/tetricks-crud-api:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
 
 
