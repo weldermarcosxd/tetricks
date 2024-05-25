@@ -37,10 +37,10 @@ jobs:
           appSourcePath: ${{ github.workspace }} 
           registryUrl: docker.io
           registryUsername: ${{ secrets.TETRICKSCRUDAPI_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.TETRICKSCRUDAPI_REGISTRY_PASSWORD }}
+          registryPassword: ${{ secrets.DOCKER_PASSWORD }}
           containerAppName: tetricks-crud-api
           resourceGroup: Tetricks
-          imageToBuild: weldermarcosxd@gmail.com/tetricks-crud-api:${{ github.sha }}
+          imageToBuild: weldermarcosxd/tetricks-crud-api:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
 
