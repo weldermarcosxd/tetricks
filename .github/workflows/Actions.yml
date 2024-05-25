@@ -60,3 +60,20 @@ jobs:
       with:
         push: "true"
         tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Build and deploy Container App
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          acrName: Docker-hub
+          containerAppName: tetricks-crud-api
+          resourceGroup: my-rg
+          imageToDeploy: weldermarcosxd/tetricks-crud-api:${{ github.sha }}
