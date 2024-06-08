@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Tetricks.Crud.Repositories.Enums;
 
 namespace Tetricks.Crud.Repositories.Extensions;
 

@@ -1,5 +1,8 @@
-public enum DatabaseProvider
+namespace Tetricks.Crud.Repositories.Enums
 {
-    PostgresSql,
-    SQLServer
+    public enum DatabaseProvider
+    {
+        PostgresSql,
+        SQLServer
+    }
 }
