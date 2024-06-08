@@ -16,7 +16,7 @@ public class TarefaService(ITarefaRepository tarefaRepository, IConfiguration co
         CancellationToken cancellationToken
     )
     {
-        var queryable = await _tarefaRepository.GetQueryableAsync(cancellationToken);
+        var queryable = _tarefaRepository.GetQueryable(cancellationToken);
         var resultadoPaginado = await queryable.CriarResultadosPaginadosAsync(
             filtroDePesquisa,
             configuration,

@@ -4,9 +4,9 @@ using Tetricks.Crud.Repositories.Abstractions;
 
 namespace Tetricks.Crud.Repositories;
 
-public class TarefaRepository : BaseRepository<ITarefa>, ITarefaRepository
+public class TarefaRepository : ITarefaRepository
 {
-    public override Task<IQueryable<ITarefa>> GetQueryableAsync(CancellationToken cancellationToken)
+    public IQueryable<ITarefa> GetQueryable(CancellationToken cancellationToken)
     {
         var criador = new Usuario
         {
@@ -87,6 +87,6 @@ public class TarefaRepository : BaseRepository<ITarefa>, ITarefaRepository
             }
         );
 
-        return Task.FromResult(tarefas);
+        return tarefas;
     }
 }

@@ -5,7 +5,7 @@ namespace Tetricks.Crud.Services.Abstractions;
 
 public interface IProdutoService
 {
-    Task<IResultadoPaginado<IProduto>> ObterTodasAsTarefasAsync(
+    Task<IResultadoPaginado<IProduto>> ObterTodasOsProdutosAsync(
         IFiltroDePesquisa filtroDePesquisa,
         CancellationToken cancellationToken
     );

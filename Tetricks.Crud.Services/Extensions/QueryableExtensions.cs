@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Tetricks.Crud.Entities.Abstractions.DTOs;
 using Tetricks.Crud.Entities.Abstractions.Repositorios;
 using Tetricks.Crud.Entities.DTOs;
@@ -18,7 +19,10 @@ public static class QueryableExtensions
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        await Task.Delay(100, cancellationToken);
+        var quantidade = await queryable.CountAsync(cancellationToken);
+
+        if (quantidade <= decimal.Zero)
+            return new ResultadoPaginado<TModel>() { Sucesso = true };
 
         var nomeDaentidadeListada = queryable.First().GetType().Name;
 

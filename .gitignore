@@ -44,3 +44,4 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+Tetricks.Crud.Api/appsettings.Development.json

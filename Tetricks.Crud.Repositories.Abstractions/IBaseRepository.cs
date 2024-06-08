@@ -2,5 +2,5 @@
 
 public interface IBaseRepository<TModel>
 {
-    Task<IQueryable<TModel>> GetQueryableAsync(CancellationToken cancellationToken);
+    IQueryable<TModel> GetQueryable(CancellationToken cancellationToken);
 }

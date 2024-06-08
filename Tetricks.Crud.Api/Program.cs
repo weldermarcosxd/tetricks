@@ -16,7 +16,7 @@ public static class Program
         services.AddEndpointsApiExplorer();
         services.AdicionarAutenticacaoEAutorizacao(configuration);
         services.AdicionarSwaggerComAutenticacao(configuration);
-        services.AdicionarRepositorios();
+        services.AdicionarRepositorios(configuration);
         services.AdicionarServicos();
 
         var app = builder.Build();
@@ -27,6 +27,7 @@ public static class Program
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
+
         app.Run();
     }
 }

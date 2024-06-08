@@ -6,6 +6,7 @@ using Tetricks.Crud.Services.Abstractions;
 
 namespace Tetricks.Crud.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ProdutosController(ILogger<ProdutosController> logger, IProdutoService produtoService) : ControllerBase
@@ -20,7 +21,7 @@ public class ProdutosController(ILogger<ProdutosController> logger, IProdutoServ
     )
     {
         _logger.LogInformation("Acessando método Get de obtenção de ProdutosController");
-        var resultadoPaginado = await _produtoService.ObterTodasAsTarefasAsync(filtroDePesquisa, cancellationToken);
+        var resultadoPaginado = await _produtoService.ObterTodasOsProdutosAsync(filtroDePesquisa, cancellationToken);
         return Ok(resultadoPaginado);
     }
 }

@@ -9,8 +9,8 @@ public record ResultadoPaginado<T> : IResultadoPaginado<T>
     public string? Mensagem { get; set; }
     public Uri? Proximo { get; set; }
     public Uri? Anterior { get; set; }
-    public int PaginaAtual { get; set; }
-    public int QuantidadeDePaginas { get; set; }
+    public int PaginaAtual { get; set; } = 1;
+    public int QuantidadeDePaginas { get; set; } = 1;
     public int QuantidadeDeRegistros { get; set; }
     public ICollection<T> Resultados { get; private set; } = [];
 }

@@ -3,6 +3,7 @@
 public interface IEntidadeDeCrud
 {
     Guid Id { get; set; }
+    public long Sequencial { get; set; }
     DateTime CriadoEm { get; set; }
     DateTime? AtualizadoEm { get; set; }
 }
