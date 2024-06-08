@@ -24,10 +24,11 @@ public static class QueryableExtensions
         if (quantidade <= decimal.Zero)
             return new ResultadoPaginado<TModel>() { Sucesso = true };
 
-        var nomeDaentidadeListada = queryable.First().GetType().Name;
+        var primeiraEntidade = await queryable.FirstAsync(cancellationToken);
+        var nomeDaentidadeListada = primeiraEntidade.GetType().Name;
 
         var dominioBase = configuration.ObterDominioBase();
-        var quantidadeTotal = queryable.Count();
+        var quantidadeTotal = await queryable.CountAsync(cancellationToken);
         var totalDePaginas = (int)Math.Ceiling((double)quantidadeTotal / filtroDePesquisa.QuantidadePorPagina);
         var urlPaginaAnterior =
             filtroDePesquisa.NumeroDaPagina <= 1
@@ -50,11 +51,12 @@ public static class QueryableExtensions
             Sucesso = true
         };
 
-        queryable
+        var resultados = await queryable
             .Skip((filtroDePesquisa.NumeroDaPagina - 1) * filtroDePesquisa.QuantidadePorPagina)
             .Take(filtroDePesquisa.QuantidadePorPagina)
-            .ToList()
-            .ForEach(resultadoPaginado.Resultados.Add);
+            .ToListAsync(cancellationToken);
+
+        resultados.ForEach(resultadoPaginado.Resultados.Add);
 
         return resultadoPaginado;
     }
