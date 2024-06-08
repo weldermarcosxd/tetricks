@@ -5,7 +5,8 @@
       Include="..\Tetricks.Crud.Services.Abstractions\Tetricks.Crud.Services.Abstractions.csproj" />
     <ProjectReference
       Include="..\Tetricks.Crud.Repositories.Abstractions\Tetricks.Crud.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\Tetricks.Crud.Entities\Tetricks.Crud.Entities.csproj" />
+    <ProjectReference
+      Include="..\Tetricks.Crud.Entities\Tetricks.Crud.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,8 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
   </ItemGroup>
 
   <PropertyGroup>

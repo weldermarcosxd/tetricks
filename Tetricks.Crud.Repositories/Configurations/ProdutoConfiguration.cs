@@ -1,5 +1,4 @@
-﻿using Bogus;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tetricks.Crud.Entities;
 
@@ -12,6 +11,7 @@ public class ProdutoConfiguration : BaseCrudConfigurationModel<Produto>
         base.Configure(builder);
         builder.ToTable(nameof(Produto));
         builder.HasIndex(x => new { x.Descricao, x.TenantId });
+        builder.Property(x => x.ValorUnitario).HasPrecision(18, 2);
         builder.HasOne(x => x.CriadoPor).WithMany(u => u.ProdutosCriados).IsRequired();
         builder.HasOne(x => x.AtualizadoPor).WithMany(u => u.ProdutosAtualizados);
     }

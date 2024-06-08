@@ -19,12 +19,24 @@ public static class ConfigurationExtensions
         return providerString;
     }
 
+    public static DatabaseProvider ObterTipoDoDatabaseProvider(this IConfiguration configuration)
+    {
+        var providerString = ObterVariavelObrigatoria(configuration, DatabaseProviderKey);
+        var providerValido = Enum.TryParse<DatabaseProvider>(providerString, true, out var provedorConfigurado);
+
+        if (!providerValido)
+            throw new ArgumentException(DatabaseProviderKey);
+
+        return provedorConfigurado;
+    }
+
     public static string ObterConnectionString(this IConfiguration configuration) =>
         ObterVariavelObrigatoria(configuration, $"{ObterDatabaseProvider(configuration)}:{ConnectionStringKey}");
 
     private static string ObterVariavelObrigatoria(IConfiguration configuration, string chave)
     {
         var valor = configuration.GetValue(chave, string.Empty);
+        Console.WriteLine($"{chave}::::::::::::{valor}");
         if (string.IsNullOrWhiteSpace(valor))
             throw new ArgumentException(chave);
 

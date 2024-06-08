@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Tetricks.Crud.Entities.Abstractions;
 using Tetricks.Crud.Entities.Abstractions.DTOs;
+using Tetricks.Crud.Entities.DTOs;
 using Tetricks.Crud.Repositories.Abstractions;
+using Tetricks.Crud.Repositories.Abstractions.Extensions;
 using Tetricks.Crud.Services.Abstractions;
 
 namespace Tetricks.Crud.Services;
@@ -17,7 +19,7 @@ public class TarefaService(ITarefaRepository tarefaRepository, IConfiguration co
     )
     {
         var queryable = _tarefaRepository.GetQueryable(cancellationToken);
-        var resultadoPaginado = await queryable.CriarResultadosPaginadosAsync(
+        var resultadoPaginado = await queryable.CriarResultadosPaginadosAsync<ITarefa, ResultadoPaginado<ITarefa>>(
             filtroDePesquisa,
             configuration,
             cancellationToken
