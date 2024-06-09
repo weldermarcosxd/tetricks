@@ -8,6 +8,6 @@ public class TarefaRepository(TetricksDbContext tetricksDbContext) : ITarefaRepo
 {
     public IQueryable<ITarefa> GetQueryable(CancellationToken cancellationToken)
     {
-        return tetricksDbContext.Tarefas.OrderBy(x => x.Sequencial);
+        return tetricksDbContext..OrderBy(x => x.Sequencial);
     }
 }

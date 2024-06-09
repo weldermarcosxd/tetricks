@@ -40,5 +40,6 @@ public class TetricksDbContext : DbContext
     }
 
     public DbSet<Produto> Produtos { get; set; }
+    public DbSet<Tarefa> Tarefas { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
 }
