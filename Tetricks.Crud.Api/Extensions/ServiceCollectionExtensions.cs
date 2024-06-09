@@ -14,32 +14,22 @@ public static class ServiceCollectionExtensions
         var audiencia = configuration.ObterAudienciaDoKeycloak();
 
         services
-            .AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = true;
-                options.Audience = audiencia;
                 options.Authority = authority;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
-
+                    ValidateIssuerSigningKey = true,
                     ValidIssuer = authority,
                     ValidAudience = audiencia,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = string.IsNullOrEmpty(clientSecret)
-                        ? null
-                        : new SymmetricSecurityKey(Encoding.UTF8.GetBytes(clientSecret))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(clientSecret!)),
+                    ClockSkew = TimeSpan.Zero
                 };
             });
-
         services.AddAuthorization();
     }
 
