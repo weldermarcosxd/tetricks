@@ -4,17 +4,10 @@ using Tetricks.Crud.Repositories.Contexts;
 
 namespace Tetricks.Crud.Repositories;
 
-public class ProdutoRepository : IProdutoRepository
+public class ProdutoRepository(TetricksDbContext tetricksDbContext) : IProdutoRepository
 {
-    private readonly TetricksDbContext _tetricksDbContext;
-
-    public ProdutoRepository(TetricksDbContext tetricksDbContext)
-    {
-        _tetricksDbContext = tetricksDbContext;
-    }
-
     public IQueryable<IProduto> GetQueryable(CancellationToken cancellationToken)
     {
-        return _tetricksDbContext.Produtos.OrderBy(x => x.Sequencial).AsQueryable();
+        return tetricksDbContext.Produtos.OrderBy(x => x.Sequencial);
     }
 }

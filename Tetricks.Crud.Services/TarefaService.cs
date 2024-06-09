@@ -10,15 +10,12 @@ namespace Tetricks.Crud.Services;
 
 public class TarefaService(ITarefaRepository tarefaRepository, IConfiguration configuration) : ITarefaService
 {
-    private readonly ITarefaRepository _tarefaRepository = tarefaRepository;
-    private readonly IConfiguration configuration = configuration;
-
     public async Task<IResultadoPaginado<ITarefa>> ObterTodasAsTarefasAsync(
         IFiltroDePesquisa filtroDePesquisa,
         CancellationToken cancellationToken
     )
     {
-        var queryable = _tarefaRepository.GetQueryable(cancellationToken);
+        var queryable = tarefaRepository.GetQueryable(cancellationToken);
         var resultadoPaginado = await queryable.CriarResultadosPaginadosAsync<ITarefa, ResultadoPaginado<ITarefa>>(
             filtroDePesquisa,
             configuration,
